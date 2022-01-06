@@ -1,20 +1,25 @@
 import { v4 as uuid } from 'uuid'
 
 export const statusMap = {
-  Todo: 'Todo',
-  Doing: 'Doing',
-  Done: 'Done',
+  todo: 'Todo',
+  doing: 'Doing',
+  done: 'Done',
 } as const
 export type Status = typeof statusMap[keyof typeof statusMap]
 
 export class Task {
   readonly id
   title
-  status
+  status: Status
 
   constructor(properties: { title: string }) {
     this.id = uuid()
     this.title = properties.title
-    this.status = statusMap.Todo
+    this.status = statusMap.todo
+  }
+
+  update(properties: { title?: string; status?: Status }) {
+      this.title = properties.title || this.title
+      this.status = properties.status || this.status
   }
 }
