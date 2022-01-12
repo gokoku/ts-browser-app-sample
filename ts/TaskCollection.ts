@@ -3,7 +3,7 @@ import { Status, Task, TaskObject } from './Task'
 const STORAGE_KEY = 'TASKS'
 export class TaskCollection {
   private readonly storage
-  private tasks: Task[] = []
+  private tasks
 
   constructor() {
     this.storage = localStorage
@@ -31,6 +31,7 @@ export class TaskCollection {
       }
       return item
     })
+    this.updateStorage()
   }
 
   filter(filterStatus: Status) {
@@ -41,7 +42,7 @@ export class TaskCollection {
     this.storage.setItem(STORAGE_KEY, JSON.stringify(this.tasks))
   }
 
-  private getStoredTasks(): Task[] {
+  private getStoredTasks() {
     const jsonString = this.storage.getItem(STORAGE_KEY)
     if (!jsonString) return []
     try{

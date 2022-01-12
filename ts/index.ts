@@ -62,13 +62,11 @@ class Application {
 
   private handleDropAndDrop = (el: Element, sibling: Element | null, newStatus: Status) => {
     const taskId = this.taskRenderer.getId(el)
-    if (!taskId) {
-      return
-    }
+    if (!taskId) return
+
     const task = this.taskCollection.find(taskId)
-    if (!task) {
-      return
-    }
+    if (!task) return
+
     task.update({ status: newStatus })
     this.taskCollection.update(task)
     console.log(sibling)

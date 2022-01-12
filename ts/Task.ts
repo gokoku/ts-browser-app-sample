@@ -21,6 +21,7 @@ export class Task {
     this.id = properties.id || uuid()
     this.title = properties.title
     this.status = properties.status || statusMap.todo
+    console.log(properties)
   }
 
   update(properties: { title?: string; status?: Status }) {

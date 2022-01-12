@@ -62,9 +62,8 @@ export class TaskRenderer {
 
   remove(task: Task) {
     const taskEl = document.getElementById(task.id)
-    if (!taskEl) {
-      return
-    }
+    if (!taskEl) return
+
     if(task.status === statusMap.todo) {
       this.todoList.removeChild(taskEl)
     }
